@@ -1,4 +1,5 @@
 {% extends 'blog/base.html' %}
+{% load static %}
 {% block headTitle %}
     Blog
 {% endblock %}
@@ -6,9 +7,46 @@
 class="active"
 {% endblock %}
 {% block content %}
-	<h2>New post</h2>
-	<form method="POST" class="post-form">{% csrf_token %}
-		{{ form.as_p }}
-		<button type="submit" class="save btn btn-default">Save</button>
-	</form>
+	<div class="panel">
+		<div class="panel-heading">
+			<h3 class="panel-title">
+			<i class="fa fa-fw ti-move"></i> New Post
+			</h3>
+			<span class="pull-right">
+				<i class="fa fa-fw clickable ti-angle-up"></i>
+				<!-- <i class="fa fa-fw ti-close removepanel clickable"></i> -->
+			</span>
+		</div>
+		<div class="panel-body" style="display: block;">
+			<form  action="{% url 'post_new'%}" method="POST" class="form-horizontal" role="form">
+				{% csrf_token %}
+				<!-- {{ form.as_p }} -->
+				{% for field in form %}
+					<div class="form-group">
+						<label for="{{ field.id_for_label}}" class="col-sm-2 control-label">{{ field.label }}</label>
+						<div class="col-sm-10">
+							<!-- <input type="text" class="form-control" id="{{ field.id_for_label}}" placeholder="Input {{ field.html_name }}"> -->
+							{{field}}
+						</div>
+					</div>
+				{% endfor %}
+				<button type="submit" class="button button-pill button-primary-flat hvr-shrink pull-right">
+				Simpan
+				</button>
+				
+			</form>
+		</div>
+	</div>
+{% endblock %}
+{% block extraCss %}
+	<link href="{% static 'vendors/hover/css/hover-min.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'vendors/laddabootstrap/css/ladda-themeless.min.css' %}">
+	<link href="{% static 'css/buttons_sass.css' %}" rel="stylesheet">
+	<link href="{% static 'css/advbuttons.css' %}" rel="stylesheet">
+{% endblock %}
+{% block extraJs %}
+	<script type="text/javascript" src="{% static 'vendors/Buttons/js/buttons.js' %}"></script>
+	<script type="text/javascript" src="{% static 'vendors/laddabootstrap/js/spin.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'vendors/laddabootstrap/js/ladda.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/custom_js/button_main.js' %}"></script>
 {% endblock %}

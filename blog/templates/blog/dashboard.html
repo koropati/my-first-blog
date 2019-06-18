@@ -6,21 +6,6 @@
 {% block aktifDashboard %}
     class="active"
 {% endblock %}
-{% block extraCss %}
-    <link rel="stylesheet" type="text/css" href="{% static 'vendors/leaflet/css/leaflet.css' %}"/>
-    <link rel="stylesheet" href="{% static 'css/custom_css/dashboard1_timeline.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'vendors/animate/animate.min.css' %}">
-    <!-- <link href="{% static 'css/timeline.css' %}" rel="stylesheet"/> -->
-{% endblock %}
-{% block extraJs %}
-    <!-- Maps -->
-    <script type="text/javascript" src="{% static 'vendors/leaflet/js/leaflet-src.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/custom_js/advanced_maps.js' %}"></script>
-    <!-- End Maps -->
-    <script type="text/javascript" src="{% static 'vendors/wow/js/wow.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'vendors/advanced_newsTicker/js/newsTicker.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/custom_js/time_line.js' %}"></script>
-{% endblock %}
 {% block content %}
     {% load static %}
     <!-- <link rel="stylesheet" type="text/css" href="{% static 'vendors/nvd3/css/nv.d3.min.css' %}"> -->
@@ -175,7 +160,46 @@
             </div>
         </div>
     </div>
-    <!-- <script type="text/javascript" src="{% static 'vendors/nvd3/js/nv.d3.min.js' %}"></script>
+{% endblock %}
+{% block extraCss %}
+    <link rel="stylesheet" type="text/css" href="{% static 'vendors/leaflet/css/leaflet.css' %}"/>
+    <!-- <link rel="stylesheet" href="{% static 'css/custom_css/dashboard1_timeline.css' %}"/> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendors/animate/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendors/swiper/css/swiper.min.css' %}">
+    <link href="{% static 'vendors/nvd3/css/nv.d3.min.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'vendors/lcswitch/css/lc_switch.css' %}">
+    <link href="{% static 'css/custom_css/dashboard1.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'css/custom_css/dashboard1_timeline.css' %}" rel="stylesheet"/>
+    <!-- <link href="{% static 'css/timeline.css' %}" rel="stylesheet"/> -->
+{% endblock %}
+{% block extraJs %}
+    <!-- Maps -->
+    <script type="text/javascript" src="{% static 'vendors/leaflet/js/leaflet-src.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/custom_js/advanced_maps.js' %}"></script>
+    <!-- End Maps -->
+    <script type="text/javascript" src="{% static 'vendors/wow/js/wow.min.js' %}"></script>
+    <!-- <script type="text/javascript" src="{% static 'vendors/advanced_newsTicker/js/newsTicker.js' %}"></script> -->
+    <script type="text/javascript" src="{% static 'js/custom_js/time_line.js' %}"></script>
+    <!-- begining of page level js -->
+    <!--Sparkline Chart-->
+    <script type="text/javascript" src="{% static 'js/custom_js/sparkline/jquery.flot.spline.js' %}"></script>
+    <!-- flip --->
     <script type="text/javascript" src="{% static 'vendors/flip/js/jquery.flip.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'vendors/swiper/js/swiper.min.js' %}"></script> -->
+    <script type="text/javascript" src="{% static 'vendors/lcswitch/js/lc_switch.min.js' %}"></script>
+    <!--flot chart-->
+    <script type="text/javascript" src="{% static 'vendors/flotchart/js/jquery.flot.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendors/flotchart/js/jquery.flot.resize.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendors/flotchart/js/jquery.flot.stack.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendors/flotspline/js/jquery.flot.spline.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendors/flot.tooltip/js/jquery.flot.tooltip.js' %}"></script>
+    <!--swiper-->
+    <script type="text/javascript" src="{% static 'vendors/swiper/js/swiper.min.js' %}"></script>
+    <!--chartjs-->
+    <script src="{% static 'vendors/chartjs/js/Chart.js' %}"></script>
+    <!--nvd3 chart-->
+    <script type="text/javascript" src="{% static 'js/nvd3/d3.v3.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendors/nvd3/js/nv.d3.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendors/moment/js/moment.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendors/advanced_newsTicker/js/newsTicker.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/dashboard1.js' %}"></script>
 {% endblock %}
