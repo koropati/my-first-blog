@@ -1,7 +1,17 @@
 {% extends 'blog/base.html' %}
 {% load static %}
-{% block headTitle %}
-    Jurnal
+{% block content-header %}
+     <h1>Jurnal</h1>
+    <ol class="breadcrumb">
+        <li>
+            <a href="index.html">
+                <i class="fa fa-fw ti-home"></i> Dashboard
+            </a>
+        </li>
+        <li class="active">
+            Jurnal
+        </li>
+    </ol>
 {% endblock %}
 {% block aktifJurnal %}
     class="active"
