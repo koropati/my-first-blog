@@ -1,0 +1,181 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block headTitle %}
+    Dashboard
+{% endblock %}
+{% block aktifDashboard %}
+    class="active"
+{% endblock %}
+{% block extraCss %}
+    <link rel="stylesheet" type="text/css" href="{% static 'vendors/leaflet/css/leaflet.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/custom_css/dashboard1_timeline.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'vendors/animate/animate.min.css' %}">
+    <!-- <link href="{% static 'css/timeline.css' %}" rel="stylesheet"/> -->
+{% endblock %}
+{% block extraJs %}
+    <!-- Maps -->
+    <script type="text/javascript" src="{% static 'vendors/leaflet/js/leaflet-src.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/custom_js/advanced_maps.js' %}"></script>
+    <!-- End Maps -->
+    <script type="text/javascript" src="{% static 'vendors/wow/js/wow.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendors/advanced_newsTicker/js/newsTicker.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/custom_js/time_line.js' %}"></script>
+{% endblock %}
+{% block content %}
+    {% load static %}
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'vendors/nvd3/css/nv.d3.min.css' %}"> -->
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-3">
+            <div class="flip">
+                <div class="widget-bg-color-icon card-box front">
+                    <div class="bg-icon pull-left">
+                        <i class="ti-eye text-warning"></i>
+                    </div>
+                    <div class="text-right">
+                        <h3 class="text-dark"><b>3752</b></h3>
+                        <p>Pengunjung</p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="widget-bg-color-icon card-box back">
+                    <div class="text-center">
+                        <span id="loadspark-chart"></span>
+                        <hr>
+                        <p>Check summary</p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-3">
+            <div class="flip">
+                <div class="widget-bg-color-icon card-box front">
+                    <div class="bg-icon pull-left">
+                        <i class="ti-shopping-cart text-success"></i>
+                    </div>
+                    <div class="text-right">
+                        <h3><b id="widget_count3">3251</b></h3>
+                        <p>Jumlah Distribusi</p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="widget-bg-color-icon card-box back">
+                    <div class="text-center">
+                        <span class="linechart" id="salesspark-chart"></span>
+                        <hr>
+                        <p>Check summary</p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-3">
+            <div class="flip">
+                <div class="widget-bg-color-icon card-box front">
+                    <div class="bg-icon pull-left">
+                        <i class="ti-thumb-up text-danger"></i>
+                    </div>
+                    <div class="text-right">
+                        <h3 class="text-dark"><b>10</b></h3>
+                        <p>Data Irigasi</p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="widget-bg-color-icon card-box back">
+                    <div class="text-center">
+                        <span id="visitsspark-chart"></span>
+                        <hr>
+                        <p>Check summary</p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-3">
+            <div class="flip">
+                <div class="widget-bg-color-icon card-box front">
+                    <div class="bg-icon pull-left">
+                        <i class="ti-user text-info"></i>
+                    </div>
+                    <div class="text-right">
+                        <h3 class="text-dark"><b>1252</b></h3>
+                        <p>Jumlah Kurir</p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="widget-bg-color-icon card-box back">
+                    <div class="text-center">
+                        <span id="subscribers-chart"></span>
+                        <hr>
+                        <p>Check summary</p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 col-xs-12">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                            <i class="ti-location-arrow"></i> Distributions Tracking
+                            </h4>
+                            <span class="pull-right">
+                                <i class="fa fa-fw ti-angle-up clickable"></i>
+                                <i class="fa fa-fw ti-close removepanel clickable"></i>
+                            </span>
+                        </div>
+                        <div class="panel-body" style="padding:10px !important;">
+                            <div id="advanced_map" class="gmap"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4  col-xs-12">
+            <div class="row">
+                <div class="col-lg-12 col-sm-6">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Blog Post</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div>
+                                <ul class="timeline timeline-update">
+                                    {% for post in posts %}
+                                        <li>
+                                            <div class="timeline-badge primary wow lightSpeedIn center">
+                                                <img src="{% static 'img/authors/avatar1.jpg' %}" height="36" width="36"
+                                                class="img-circle pull-right" alt="avatar-image">
+                                            </div>
+                                            <div class="timeline-panel wow slideInLeft"
+                                                style="display:inline-block;">
+                                                <div class="timeline-heading">
+                                                    <h4 class="timeline-title"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h4>
+                                                    <p>
+                                                        <small class="text-primary">{{ post.published_date }}</small>
+                                                    </p>
+                                                </div>
+                                                <div class="timeline-body">
+                                                    <p>
+                                                        {{ post.text|linebreaksbr }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <script type="text/javascript" src="{% static 'vendors/nvd3/js/nv.d3.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendors/flip/js/jquery.flip.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendors/swiper/js/swiper.min.js' %}"></script> -->
+{% endblock %}

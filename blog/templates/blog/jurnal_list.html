@@ -1,0 +1,88 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block headTitle %}
+    Jurnal
+{% endblock %}
+{% block aktifJurnal %}
+    class="active"
+{% endblock %}
+{% block extraCss %}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Data Tables -->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendors/datatables/css/dataTables.bootstrap.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'vendors/datatables/css/buttons.bootstrap.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'vendors/datatables/css/colReorder.bootstrap.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'vendors/datatables/css/dataTables.bootstrap.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'vendors/datatables/css/rowReorder.bootstrap.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'vendors/datatables/css/buttons.bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'vendors/datatables/css/scroller.bootstrap.css' %}">
+    <!-- End Data Tables -->
+{% endblock %}
+{% block extraJs %}
+    <!-- dataTables -->
+    <script type="text/javascript" src="{% static 'vendors/datatables/js/jquery.dataTables.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendors/datatables/js/dataTables.bootstrap.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendors/datatables/js/dataTables.buttons.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendors/datatables/js/dataTables.colReorder.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendors/datatables/js/dataTables.responsive.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendors/datatables/js/dataTables.rowReorder.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendors/datatables/js/buttons.colVis.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendors/datatables/js/buttons.html5.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendors/datatables/js/buttons.bootstrap.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendors/datatables/js/buttons.print.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vendors/datatables/js/dataTables.scroller.js' %}"></script>
+    <script src="{% static 'js/custom_js/advanced_datatables.js' %}" type="text/javascript"></script>
+    <!-- End dataTables -->
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel filterable">
+                <div class="panel-heading clearfix  ">
+                    <div class="panel-title pull-left">
+                        <i class="ti-export"></i> <b>DATA JURNAL</b>
+                    </div>
+                    <div class="tools pull-right">
+                        <a href="{% url 'jurnal_new' %}"><button class="button button-rounded button-royal-flat hvr-rotate">Tambah Jurnal
+                        </button></a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="table1">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Judul</th>
+                                    <th>Penulis</th>
+                                    <th>Tahun Terbit</th>
+                                    <th>Sensor</th>
+                                    <th>Algoritma</th>
+                                    <th>Penerapan</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for jurnal in jurnals %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ jurnal.judul }}</td>
+                                        <td>{{ jurnal.penulis }}</td>
+                                        <td>{{ jurnal.tahun }}</td>
+                                        <td>{{ jurnal.sensor }}</td>
+                                        <td>{{ jurnal.algoritma }}</td>
+                                        <td>{{ jurnal.penerapan }}</td>
+                                        <td>
+                                            <a class="btn btn-default" href="{% url 'jurnal_edit' pk=jurnal.pk %}">Edit Jurnal</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

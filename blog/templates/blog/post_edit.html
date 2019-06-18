@@ -1,4 +1,10 @@
 {% extends 'blog/base.html' %}
+{% block headTitle %}
+    Blog
+{% endblock %}
+{% block aktifAdd_post %}
+class="active"
+{% endblock %}
 {% block content %}
 	<h2>New post</h2>
 	<form method="POST" class="post-form">{% csrf_token %}
