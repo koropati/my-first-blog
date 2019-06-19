@@ -1,6 +1,16 @@
 {% extends 'blog/base.html' %}
-{% block headTitle %}
-    Blog
+{% block content-header %}
+	 <h1>Post</h1>
+    <ol class="breadcrumb">
+        <li>
+            <a href="{% url 'dashboard' %}">
+                <i class="fa fa-fw ti-home"></i> Dashboard
+            </a>
+        </li>
+        <li class="active">
+            Post
+        </li>
+    </ol>
 {% endblock %}
 {% block aktifList_blog %}
 	class="active"

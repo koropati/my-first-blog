@@ -1,0 +1,69 @@
+{% extends "registration/base.html" %}
+{% block content %}
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-12">
+                {% if form.errors %}
+                    <p>Your username and password didn't match. Please try again.</p>
+                {% endif %}
+                <form method="post" action="{% url 'login' %}" >
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="username" class="sr-only"> {{ form.username.label_tag }}</label>
+                        <input type="text" class="form-control  form-control-lg" id="username" name="username"
+                        placeholder="Username">
+                        <!-- {{ form.username }} -->
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="sr-only">{{ form.password.label_tag }}</label>
+                        <input type="password" class="form-control form-control-lg" id="password"
+                        name="password" placeholder="Password">
+                        <!-- {{ form.password }} -->
+                    </div>
+                    <!-- <table>
+                        <tr>
+                            <td>{{ form.username.label_tag }}</td>
+                            <td>{{ form.username }}</td>
+                        </tr>
+                        <tr>
+                            <td>{{ form.password.label_tag }}</td>
+                            <td>{{ form.password }}</td>
+                        </tr>
+                    </table> -->
+                    <div class="form-group">
+                        <input type="submit" value="Login" class="btn btn-primary btn-block"/>
+                        <input type="hidden" name="next" value="{{ next }}" />
+                    </div>
+                    <a href="#" id="forgot" class="forgot"> Forgot Password ? </a>
+                    <!-- <span class="pull-right sign-up">New ? <a href="#">Sign Up</a></span> -->
+                    <!-- <input type="submit" value="login" /> -->
+                    
+                </form>
+            </div>
+        </div>
+        <div class="row text-center social">
+            <div class="col-xs-12">
+                <p class="alter">Sign in with</p>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <div class="col-xs-4">
+                        <a href="#" class="btn btn-lg btn-facebook">
+                            <i class="ti-facebook"></i>
+                        </a>
+                    </div>
+                    <div class="col-xs-4">
+                        <a href="#" class="btn btn-lg btn-twitter">
+                            <i class="ti-twitter-alt"></i>
+                        </a>
+                    </div>
+                    <div class="col-xs-4">
+                        <a href="#" class="btn btn-lg btn-google">
+                            <i class="ti-google"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
