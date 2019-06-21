@@ -13,4 +13,9 @@ urlpatterns = [
 	path('jurnal/', views.jurnal_list, name='jurnal_list'),
 	path('jurnal/new/', views.jurnal_new, name='jurnal_new'),
 	path('jurnal/<int:pk>/edit/', views.jurnal_edit, name='jurnal_edit'),
+	path('new/', views.data_test, name='data_test'),
+	path('map/', views.data_list, name='data_list'),
+	path('map/<int:id>/', views.data_detail, name='data_detail'),
+	path('map/<int:id>/remove/', views.data_remove, name='data_remove'),
+	# path('res/', views.response, name='response'),
 ]

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post, Jurnal
+from .models import Post, Jurnal, Data
 
 class PostForm(forms.ModelForm):
 	"""docstring for PostForm"""
@@ -23,4 +23,12 @@ class JurnalForm(forms.ModelForm):
 			'sensor': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Jenis Sensor'}),
 			'algoritma': forms.Textarea(attrs={'class':'form-control', 'placeholder':'Algoritma'}),
 			'penerapan': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Tempat Penerapan'}),
+		}
+
+class DataForm(forms.ModelForm):
+	class Meta:
+		model = Data
+		fields = ('data',)
+		widgets = {
+			'data' : forms.TextInput(),
 		}

@@ -1,8 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from .models import Post, Jurnal
-from .forms import PostForm, JurnalForm
+from .models import Post, Jurnal, Data
+from .forms import PostForm, JurnalForm, DataForm
 # Create your views here.
 @login_required
 def dashboard(request):
@@ -99,3 +99,37 @@ def jurnal_edit(request, pk):
     else:
         form = JurnalForm(instance=jurnal)
     return render(request, 'blog/jurnal_edit.html', {'form': form})
+
+def data_test(request):
+    data_in = request.GET['data']
+    if data_in == "":
+        return render(request, 'test/response.html', {'status': "DATA KOSONG"})
+    if request.method == "GET":
+        form = DataForm(request.GET)
+        if form.is_valid():
+            status = "Sukses"
+            formData = form.save(commit=False)
+            formData.data = data_in
+            formData.created_date = timezone.now()
+            formData.save()
+        else:
+            status = "failed"
+        return render(request, 'test/response.html', {'status': status})
+
+@login_required
+def data_list(request):
+    datas = Data.objects.filter(created_date__lte=timezone.now()).order_by('created_date')
+    return render(request, 'test/list_data.html', {'datas' : datas})
+
+@login_required
+def data_detail(request, id):
+    data = get_object_or_404(Data, id=id)
+    return render(request, 'test/data_detail.html', {'data' : data})
+
+@login_required
+def data_remove(request, id):
+    data = get_object_or_404(Data, id=id)
+    data.delete()
+    return redirect('data_list');
+# def response(request):
+#     return render(request, 'test/response.html')

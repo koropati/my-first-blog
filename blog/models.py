@@ -34,4 +34,17 @@ class Jurnal(models.Model):
 
 	def __str__(self):
 		return self.judul
+
+class Data(models.Model):
+	"""docstring for Data"""
+	created_date = models.DateTimeField(default=timezone.now)
+	data = models.TextField()
+
+	def publish(self):
+		self.created_date = timezone.now()
+		self.save()
+
+	def __str__(self):
+		return self.created_date
+		
 		

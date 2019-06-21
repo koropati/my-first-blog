@@ -182,8 +182,14 @@
                                 </a>
                             </li>
                         </ul>
-                    {% else %}
-                        <li class="active">
+                        <li {% block aktifDataTes %} {% endblock %}>
+                        <a href="{% url 'data_list' %}">
+                            <i class="menu-icon ti-desktop"></i>
+                            <span class="mm-text ">Data Test</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="active">
                         <a href="{% url 'login' %}">
                             <i class="menu-icon ti-desktop"></i>
                             <span class="mm-text ">Login</span>
