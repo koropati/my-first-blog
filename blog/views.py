@@ -118,7 +118,7 @@ def data_test(request):
 
 @login_required
 def data_list(request):
-    datas = Data.objects.filter(created_date__lte=timezone.now()).order_by('created_date')
+    datas = Data.objects.filter(created_date__lte=timezone.now()).order_by('-created_date')
     return render(request, 'test/list_data.html', {'datas' : datas})
 
 @login_required
